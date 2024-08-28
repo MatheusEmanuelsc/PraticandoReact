@@ -1,225 +1,72 @@
-### Índice
+# Resumo sobre Componentes no React
 
-1. [Introdução](#introdução)
-2. [O que são Components no React](#o-que-são-components-no-react)
-3. [Tipos de Components](#tipos-de-components)
-   - 3.1 [Functional Components](#functional-components)
-   - 3.2 [Class Components](#class-components)
-4. [Component Composition](#component-composition)
-5. [Ciclo de Vida dos Components](#ciclo-de-vida-dos-components)
-   - 5.1 [Ciclo de Vida em Class Components](#ciclo-de-vida-em-class-components)
-   - 5.2 [Hooks em Functional Components](#hooks-em-functional-components)
-6. [Props e State](#props-e-state)
-   - 6.1 [Props](#props)
-   - 6.2 [State](#state)
+## Índice
 
----
+1. [O que são Componentes no React?](#o-que-são-componentes-no-react)
+2. [Criando um Componente Funcional Simples](#criando-um-componente-funcional-simples)
+3. [Adicionando Lógica JavaScript ao Componente](#adicionando-lógica-javascript-ao-componente)
+4. [Conclusão](#conclusão)
 
-### Introdução
+## O que são Componentes no React?
 
-Components são a base da construção de interfaces em React. Eles permitem que você divida a interface em partes reutilizáveis e independentes, facilitando a organização e manutenção do código.
+No React, um **componente** é uma função ou classe que retorna uma parte da interface do usuário (UI). Componentes são reutilizáveis e ajudam a dividir a aplicação em partes menores e mais gerenciáveis. Eles podem ser **funcionais** ou **baseados em classe**.
 
-### O que são Components no React
+- **Componentes Funcionais**: Funções JavaScript que retornam elementos React. São mais simples e recomendados para a maioria dos casos.
+- **Componentes Baseados em Classe**: Classes ES6 que estendem de `React.Component` e incluem métodos adicionais. São úteis quando se precisa de métodos de ciclo de vida, mas menos usados nas versões mais recentes do React.
 
-Um component em React é uma função ou classe que aceita entradas, chamadas de **props** (abreviação de properties), e retorna elementos React que descrevem o que deve aparecer na tela. Components podem ser aninhados, reutilizados e compostos para criar interfaces complexas a partir de pequenos blocos isolados de código.
+## Criando um Componente Funcional Simples
 
-### Tipos de Components
+Aqui está um exemplo de um componente funcional simples em React:
 
-React oferece dois tipos principais de components:
+```jsx
+import React from "react";
 
-#### 3.1 Functional Components
-
-**Functional Components** são componentes baseados em funções JavaScript. Eles são mais simples e diretos, adequados para a maioria dos casos de uso. Um Functional Component é basicamente uma função que retorna um elemento React:
-
-```javascript
-function Greeting(props) {
-  return <h1>Hello, {props.name}!</h1>;
+function Saudacao() {
+  return <h1>Olá, mundo!</h1>;
 }
+
+export default Saudacao;
 ```
 
-Aqui, `Greeting` é um Functional Component que recebe `props` e retorna um elemento `<h1>` com a saudação.
+### Explicação
 
-##### Vantagens dos Functional Components:
-- Mais simples e fácil de entender.
-- Melhor performance, já que não geram instâncias como os Class Components.
-- Suporte total aos **React Hooks**, permitindo o uso de state e outros recursos avançados sem precisar de classes.
+- **`import React from 'react';`**: Importa o React, que é necessário para definir um componente.
+- **`function Saudacao()`**: Define um componente funcional chamado `Saudacao`.
+- **`return <h1>Olá, mundo!</h1>;`**: Retorna um elemento JSX que será exibido na tela.
+- **`export default Saudacao;`**: Exporta o componente para que ele possa ser usado em outras partes da aplicação.
 
-#### 3.2 Class Components
+## Adicionando Lógica JavaScript ao Componente
 
-**Class Components** são baseados em classes ES6. Eles oferecem mais funcionalidades que os Functional Components, como métodos de ciclo de vida, mas são mais verbosos:
+Para adicionar lógica JavaScript a um componente, podemos usar funções, variáveis e estados. Vamos adicionar um botão que, ao ser clicado, atualiza uma mensagem:
 
-```javascript
-class Greeting extends React.Component {
-  render() {
-    return <h1>Hello, {this.props.name}!</h1>;
-  }
-}
-```
+```jsx
+import React, { useState } from "react";
 
-Aqui, `Greeting` é um Class Component que estende `React.Component` e implementa o método `render` para retornar o conteúdo.
+function SaudacaoComLogica() {
+  const [mensagem, setMensagem] = useState("Olá, mundo!");
 
-##### Vantagens dos Class Components:
-- Possuem acesso aos métodos de ciclo de vida.
-- Podem ser úteis quando é necessário controlar o estado interno e reagir às mudanças de estado de forma mais detalhada.
-
-### Component Composition
-
-**Component Composition** é o processo de combinar vários components para criar uma interface de usuário. Um component pode utilizar outros components como seus elementos filhos:
-
-```javascript
-function Welcome(props) {
-  return <h1>Welcome, {props.name}!</h1>;
-}
-
-function App() {
-  return (
-    <div>
-      <Welcome name="Alice" />
-      <Welcome name="Bob" />
-      <Welcome name="Charlie" />
-    </div>
-  );
-}
-```
-
-Aqui, `App` é um component que compõe três instâncias do component `Welcome`. Esse padrão é essencial para criar aplicações escaláveis e modulares.
-
-### Ciclo de Vida dos Components
-
-O ciclo de vida dos components em React descreve as fases que um component passa desde sua criação até sua remoção da árvore de componentes. Cada fase permite que você interaja com o component de maneiras específicas.
-
-#### 5.1 Ciclo de Vida em Class Components
-
-Class Components possuem métodos específicos que são chamados em diferentes fases do ciclo de vida:
-
-- **Montagem (Mounting):** Quando o component é inserido na árvore DOM.
-  - `constructor()`: Chamado ao criar o component.
-  - `componentDidMount()`: Executado após o component ser inserido no DOM.
-
-- **Atualização (Updating):** Quando o component recebe novos props ou state.
-  - `componentDidUpdate(prevProps, prevState)`: Chamado após o component ser atualizado.
-
-- **Desmontagem (Unmounting):** Quando o component é removido da árvore DOM.
-  - `componentWillUnmount()`: Executado imediatamente antes de o component ser destruído.
-
-Exemplo de um Class Component utilizando métodos de ciclo de vida:
-
-```javascript
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({ date: new Date() });
-  }
-
-  render() {
-    return <h2>It is {this.state.date.toLocaleTimeString()}.</h2>;
-  }
-}
-```
-
-#### 5.2 Hooks em Functional Components
-
-Functional Components utilizam **Hooks** para gerenciar o ciclo de vida e o state. Os Hooks mais comuns são:
-
-- **`useState`:** Permite adicionar state ao Functional Component.
-- **`useEffect`:** Substitui os métodos `componentDidMount`, `componentDidUpdate` e `componentWillUnmount`.
-
-Exemplo de uso de Hooks para substituir o ciclo de vida de um Class Component:
-
-```javascript
-import React, { useState, useEffect } from 'react';
-
-function Clock() {
-  const [date, setDate] = useState(new Date());
-
-  useEffect(() => {
-    const timerID = setInterval(() => setDate(new Date()), 1000);
-    return () => clearInterval(timerID);
-  }, []);
-
-  return <h2>It is {date.toLocaleTimeString()}.</h2>;
-}
-```
-
-### Props e State
-
-Components em React podem gerenciar dados internos e receber dados externos através de **props** e **state**.
-
-#### 6.1 Props
-
-**Props** (propriedades) são dados passados de um component pai para um component filho. Eles são imutáveis dentro do component filho.
-
-Exemplo:
-
-```javascript
-function Greeting(props) {
-  return <h1>Hello, {props.name}!</h1>;
-}
-
-function App() {
-  return <Greeting name="Alice" />;
-}
-```
-
-#### 6.2 State
-
-**State** é um objeto gerenciado internamente por um component que pode mudar ao longo do tempo. O state é mutável e pode ser atualizado usando o método `setState` em Class Components ou o Hook `useState` em Functional Components.
-
-Exemplo de uso de state:
-
-**Class Component:**
-
-```javascript
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-  }
-
-  increment = () => {
-    this.setState({ count: this.state.count + 1 });
-  }
-
-  render() {
-    return (
-      <div>
-        <p>Count: {this.state.count}</p>
-        <button onClick={this.increment}>Increment</button>
-      </div>
-    );
-  }
-}
-```
-
-**Functional Component:**
-
-```javascript
-import React, { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
+  const alterarMensagem = () => {
+    setMensagem("Você clicou no botão!");
+  };
 
   return (
     <div>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <h1>{mensagem}</h1>
+      <button onClick={alterarMensagem}>Clique Aqui</button>
     </div>
   );
 }
+
+export default SaudacaoComLogica;
 ```
 
-### Conclusão
+### Explicação
 
-Components são a espinha dorsal do desenvolvimento em React, permitindo a criação de interfaces de usuário modulares, reutilizáveis e organizadas. Compreender a diferença entre Functional e Class Components, o ciclo de vida dos components, a composição de components e o uso de props e state é essencial para desenvolver aplicações robustas e manuteníveis em React.
+- **`useState`**: Um hook do React que permite adicionar estado a um componente funcional.
+  - `const [mensagem, setMensagem] = useState('Olá, mundo!');` define um estado inicial `'Olá, mundo!'` e uma função `setMensagem` para atualizá-lo.
+- **`alterarMensagem`**: Função JavaScript que altera o estado da mensagem quando o botão é clicado.
+- **`onClick={alterarMensagem}`**: Atribui a função `alterarMensagem` ao evento de clique do botão.
+
+## Conclusão
+
+Componentes no React são a base da construção de interfaces reutilizáveis. Eles podem ser enriquecidos com lógica JavaScript usando hooks como `useState` para gerenciar o estado e funções para manipular dados. Começar com componentes funcionais é uma ótima maneira de entender a estrutura básica do React e como ele gerencia a UI de maneira eficiente.

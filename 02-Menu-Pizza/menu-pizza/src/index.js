@@ -50,6 +50,9 @@ function App() {
   return (
     <div className="container">
       <Header />
+      <Menu />
+
+      <Footer />
     </div>
   );
 }
@@ -57,8 +60,55 @@ function App() {
 const Header = () => {
   return <h1>Fast Pizza</h1>;
 };
-const Menu = () => {};
-const Footer = () => {};
+const Menu = () => {
+  return (
+    <div>
+      <h2>Our Menu</h2>;
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+};
+const Footer = () => {
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  return (
+    <footer className="footer">
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
+      )}
+    </footer>
+  );
+};
+
+function Order({ closeHour, openHour }) {
+  return (
+    <div className="order">
+      <p>
+        We're open from {openHour}:00 to {closeHour}:00. Come visit us or order
+        online.
+      </p>
+      <button className="btn">Order</button>
+    </div>
+  );
+}
+const Pizza = () => {
+  <div>
+    <img src="02-Menu-Pizza/menu-pizza/pizzas/focaccia.jpg" alt="pizza" />
+    <h2>Pizza Focaccia</h2>
+    <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+  </div>;
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

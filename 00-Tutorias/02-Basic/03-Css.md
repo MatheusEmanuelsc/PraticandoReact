@@ -9,7 +9,7 @@
 5. [Bibliotecas de Estilo](#bibliotecas-de-estilo)
 6. [Conclusão](#conclusão)
 
-## Formas de Adicionar CSS aos Componentes
+## 1. Formas de Adicionar CSS aos Componentes
 
 No React, existem várias formas de adicionar CSS para estilizar componentes. As abordagens mais comuns são:
 
@@ -18,7 +18,7 @@ No React, existem várias formas de adicionar CSS para estilizar componentes. As
 3. **Estilos Inline**: Usando estilos diretamente no elemento JSX.
 4. **Bibliotecas de Estilo**: Utilizando bibliotecas externas como `styled-components` ou `TailwindCSS`.
 
-## CSS Global
+## 2. CSS Global
 
 Uma maneira simples de adicionar CSS é criar um arquivo `.css` e importá-lo no componente ou na raiz da aplicação.
 
@@ -52,7 +52,7 @@ export default Saudacao;
 - **`.titulo`**: Classe CSS definida no arquivo `App.css`.
 - **`import './App.css';`**: Importa o arquivo CSS para aplicar as classes globais ao componente.
 
-## CSS Módulos
+## 3. CSS Módulos
 
 Os **CSS Módulos** permitem que o CSS seja aplicado apenas ao componente específico, evitando conflitos de estilo.
 
@@ -87,7 +87,7 @@ export default Saudacao;
 - **`import styles from './Saudacao.module.css';`**: Importa o módulo CSS como um objeto `styles`.
 - **`className={styles.titulo}`**: Acessa a classe `titulo` do módulo CSS.
 
-## Estilos Inline
+## 4. Estilos Inline
 
 Outra maneira de adicionar CSS é usando estilos inline diretamente no elemento JSX.
 
@@ -113,7 +113,7 @@ export default Saudacao;
 - **`const estiloTitulo`**: Objeto JavaScript que define os estilos CSS.
 - **`style={estiloTitulo}`**: Aplica o estilo inline ao elemento `<h1>`.
 
-## Bibliotecas de Estilo
+## 5. Bibliotecas de Estilo
 
 Bibliotecas como **`styled-components`** ou **`TailwindCSS`** oferecem soluções mais avançadas para estilizar componentes no React.
 
@@ -147,6 +147,6 @@ export default Saudacao;
 
 - **`styled-components`**: Permite escrever CSS diretamente em arquivos JavaScript e criar componentes estilizados reutilizáveis.
 
-## Conclusão
+## 6. Conclusão
 
 Existem várias formas de adicionar CSS aos componentes React, desde estilos globais com arquivos CSS até estilos encapsulados usando módulos, inline ou bibliotecas como `styled-components`. Escolha a abordagem que melhor se adapta ao seu projeto e às suas necessidades.

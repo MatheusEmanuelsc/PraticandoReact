@@ -1,20 +1,4 @@
-import { Header } from "./Components/Header";
-
+import "./global.css";
 export function App() {
-  return (
-    <div>
-      <Header
-        titulo=" jao"
-        paragrafo="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
-      <Header
-        titulo=" bao"
-        paragrafo="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
-      <Header
-        titulo=" gab"
-        paragrafo="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
-    </div>
-  );
+  return <div></div>;
 }

@@ -17,3 +17,62 @@
   margin-top: 2.5rem;
   color: #fff;
 }
+
+input {
+  border-radius: 1px solid #999;
+  border-radius: 22px;
+  background: transparent;
+  font-size: 1.2rem;
+  padding: 10px;
+  min-width: 250px;
+  margin-right: 12px;
+  width: 85%;
+  color: #e5e5e5;
+}
+
+button {
+  border-radius: 1px solid #999;
+  border-radius: 22px;
+  background: #20333b;
+  font-size: 1.2rem;
+  padding: 10px;
+
+  margin-right: 12px;
+  color: #fff;
+}
+
+.perfil {
+  display: flex;
+  margin: 40px 0;
+}
+
+.profile {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 2px solid #e5e5e5;
+  margin-right: 2rem;
+}
+
+.perfil h3 {
+  color: #999;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.perfil span {
+  display: block;
+  color: #999;
+  font-size: 0.9rem;
+  margin: 0;
+}
+.perfil p {
+  color: #999;
+  font-size: 0.9rem;
+  margin: 0;
+}
+h4 {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin: 0.8rem;
+}

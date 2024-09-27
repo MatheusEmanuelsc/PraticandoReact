@@ -3,6 +3,7 @@ import { Post } from "./components/Post/Post";
 import "./global.css";
 import styles from "./App.module.css";
 import { SideBar } from "./components/SideBar/SideBar";
+
 export function App() {
   return (
     <div>

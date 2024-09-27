@@ -1,0 +1,19 @@
+.conteudo {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.logo {
+  height: 100vh;
+  position: absolute;
+  left: 0;
+}
+
+.info {
+  width: 60%;
+  margin-right: 5.625rem;
+  margin-top: 2.5rem;
+  color: #fff;
+}

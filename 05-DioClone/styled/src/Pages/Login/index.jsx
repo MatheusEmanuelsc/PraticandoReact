@@ -1,5 +1,5 @@
 import { MdEmail, MdLock } from "react-icons/md";
-import Header from "../../components/Header/index.jsx";
+import { Header } from "../../components/Header/index.jsx";
 import {
   Column,
   Container,
@@ -16,7 +16,7 @@ import { Button } from "../../components/Button/index.jsx";
 
 import { Input } from "../../components/Input/index.jsx";
 
-export function Home() {
+export function Login() {
   return (
     <>
       <Header />

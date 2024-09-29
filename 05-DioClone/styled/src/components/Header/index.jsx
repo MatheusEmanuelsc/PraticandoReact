@@ -10,7 +10,7 @@ import {
 import { Button } from "../Button";
 import logo from "../../assets/logo-dio.svg";
 
-export default function Header() {
+export function Header() {
   return (
     <Wrapper>
       <Container>

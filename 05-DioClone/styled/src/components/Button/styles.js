@@ -7,15 +7,15 @@ export const ButtonContainer = styled.button`
 
   color: #fff;
   padding: 2px 12px;
-  win-width: 120px;
+  min-width: 120px;
   width: 100%;
 
-  ${(variant) =>
-    variant != "primary" &&
+  cursor: pointer;
+  ${({ variant }) =>
+    variant !== "primary" &&
     css`
       min-width: 167px;
       height: 33px;
-
       background: #e41050;
 
       &::after {
@@ -24,9 +24,13 @@ export const ButtonContainer = styled.button`
         border: 1px solid #e41050;
         top: -5px;
         left: -6px;
-        width: calc(100%-10px);
-        height: calc(100%+10px);
+        width: calc(100% + 10px);
+        height: calc(100% + 10px);
         border-radius: 22px;
+      }
+
+      &:hover {
+        opacity: 0.8;
       }
     `}
 `;

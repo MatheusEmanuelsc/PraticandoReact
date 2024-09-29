@@ -20,7 +20,7 @@ export function Home() {
             mundo e encare seu novo desafio profissional, evoluindo em
             comunidade com os melhores experts.
           </TextContent>
-          <Button title={"Começar agora"} variant="secondary" />
+          <Button title={"Começar agora"} variant="secondary" onClick={null} />
         </div>
         <div>
           <img src={banner} alt="banner " />

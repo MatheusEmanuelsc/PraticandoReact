@@ -1,5 +1,3 @@
-Aqui está um resumo detalhado sobre o **`useReducer`** em React, seguindo o formato padrão de resumo e incluindo um índice:
-
 # Resumo do Hook `useReducer`
 
 ## Índice

@@ -1,19 +1,36 @@
 ## Propriedades em Componentes React
 
-No React, **propriedades** (ou **props**) são dados que você pode passar de um componente pai para um componente filho. Essas propriedades permitem que os componentes sejam mais dinâmicos e reutilizáveis, tornando o desenvolvimento mais organizado.
+### Índice
 
-### Exemplo Básico de Componentes com Propriedades
+- [1. Introdução a Propriedades em Componentes React](#1-introdução-a-propriedades-em-componentes-react)
+- [2. Exemplo Básico de Componentes com Propriedades](#2-exemplo-básico-de-componentes-com-propriedades)
+- [3. Desestruturação de Propriedades](#3-desestruturação-de-propriedades)
+- [4. Valores Diferentes de String](#4-valores-diferentes-de-string)
+- [5. Valores Padrão para Propriedades](#5-valores-padrão-para-propriedades)
+- [6. Boas Práticas ao Usar Propriedades](#6-boas-práticas-ao-usar-propriedades)
+- [7. Diferença Entre Named e Default Exports](#7-diferença-entre-named-e-default-exports)
+- [8. Conclusão](#8-conclusão)
 
-Neste exemplo, temos dois componentes:
+---
+
+### 1. Introdução a Propriedades em Componentes React
+
+No React, **propriedades** (ou **props**) são dados que você pode passar de um componente pai para um componente filho. Elas tornam os componentes dinâmicos e reutilizáveis, permitindo o desenvolvimento de aplicações mais organizadas e flexíveis.
+
+---
+
+### 2. Exemplo Básico de Componentes com Propriedades
+
+Neste exemplo, criaremos dois componentes:
 
 - `App` (componente principal)
 - `Header` (componente reutilizável)
 
-Vamos criar o componente `Header` que recebe duas propriedades: `titulo` e `paragrafo`.
+Vamos construir o componente `Header` para aceitar três propriedades: `titulo`, `paragrafo`, e `ano`.
 
-### Estrutura do Projeto
+#### Estrutura do Projeto
 
-```
+```plaintext
 src/
   App.jsx
   Components/
@@ -21,9 +38,9 @@ src/
       Header.jsx
 ```
 
-### Passo 1: Criar o Componente `Header`
+#### Passo 1: Criar o Componente `Header`
 
-No arquivo `Header.jsx` dentro da pasta `Components/Header`, vamos criar o componente `Header` que aceita propriedades:
+No arquivo `Header.jsx` dentro da pasta `Components/Header`, crie o componente `Header` que aceita propriedades:
 
 ```jsx
 // src/Components/Header/Header.jsx
@@ -32,19 +49,15 @@ export function Header(props) {
     <div>
       <h1>{props.titulo}</h1>
       <p>{props.paragrafo}</p>
+      <p>Ano: {props.ano}</p>
     </div>
   );
 }
 ```
 
-#### Detalhes do Código:
+#### Passo 2: Utilizar o Componente `Header` no `App`
 
-- `props` é um objeto que contém todas as propriedades passadas para o componente.
-- `props.titulo` e `props.paragrafo` são acessados para renderizar o título e o parágrafo no componente.
-
-### Passo 2: Utilizando o Componente `Header` no `App`
-
-No arquivo `App.jsx`, utilizamos o componente `Header` e passamos valores diferentes para as propriedades `titulo` e `paragrafo`:
+No arquivo `App.jsx`, use o componente `Header` e passe valores diferentes para as propriedades `titulo`, `paragrafo` e `ano`:
 
 ```jsx
 // src/App.jsx
@@ -54,88 +67,124 @@ export function App() {
   return (
     <div>
       <Header
-        titulo="Jão"
-        paragrafo="Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
+        titulo="Página Inicial"
+        paragrafo="Bem-vindo à aplicação React!"
+        ano={2023}
+      />
       <Header
-        titulo="Bão"
-        paragrafo="Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
-      <Header
-        titulo="Gab"
-        paragrafo="Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ratione excepturi perferendis quam. Iste, exercitationem?"
-      ></Header>
+        titulo="Sobre Nós"
+        paragrafo="Conheça mais sobre nossa equipe."
+        ano={2022}
+      />
     </div>
   );
 }
 ```
 
-#### Detalhes do Código:
+---
 
-- O componente `Header` é reutilizado três vezes com diferentes valores para as propriedades `titulo` e `paragrafo`.
-- Isso exemplifica como as **propriedades** permitem a reutilização de componentes com dados dinâmicos.
+### 3. Desestruturação de Propriedades
 
-### Boas Práticas ao Usar Propriedades:
+Para simplificar o código, é comum desestruturar as propriedades diretamente na definição do componente.
 
-1. **Primeira Letra Maiúscula em Componentes**: Sempre nomeie seus componentes com a primeira letra maiúscula para que o React consiga diferenciá-los de elementos HTML.
+#### Exemplo com Desestruturação
 
-   Exemplo:
+```jsx
+// src/Components/Header/Header.jsx
+export function Header({ titulo, paragrafo, ano }) {
+  return (
+    <div>
+      <h1>{titulo}</h1>
+      <p>{paragrafo}</p>
+      <p>Ano: {ano}</p>
+    </div>
+  );
+}
+```
 
-   ```jsx
-   export function Header() {
-     /* código */
-   }
-   ```
+#### Vantagens
 
-2. **Envólver Vários Elementos**: Se você precisar retornar múltiplos elementos de um componente, eles devem ser envolvidos por um único contêiner como uma `div` ou um fragmento `<> </>`.
+A desestruturação deixa o código mais claro e fácil de ler, evitando o uso repetitivo de `props`.
 
-   Exemplo:
+---
 
-   ```jsx
-   return (
-     <>
-       <h1>Título</h1>
-       <p>Parágrafo</p>
-     </>
-   );
-   ```
+### 4. Valores Diferentes de String
 
-3. **Propriedades Dinâmicas**: Propriedades podem ser dinâmicas, permitindo que o mesmo componente seja usado com diferentes valores de dados, tornando o código mais reutilizável e limpo.
+No React, você pode passar qualquer tipo de dado como propriedade, incluindo números, booleanos, e objetos.
 
-### Diferença Entre Named e Default Exports
+#### Exemplo de Uso
 
-- **Named Export**: Você exporta o componente diretamente pelo nome. Nesse caso, ao importar, você precisa usar `{}`.
+```jsx
+<Header titulo="Página Inicial" paragrafo="Conteúdo interessante" ano={2023} />
+```
 
-  Exemplo de exportação:
+Neste exemplo, `ano` é um número (2023), demonstrando que propriedades podem receber valores que não são strings.
+
+---
+
+### 5. Valores Padrão para Propriedades
+
+Para definir um valor padrão para uma propriedade caso ela não seja passada, podemos usar `defaultProps`.
+
+#### Exemplo com `defaultProps`
+
+```jsx
+// src/Components/Header/Header.jsx
+export function Header({ titulo, paragrafo, ano }) {
+  return (
+    <div>
+      <h1>{titulo}</h1>
+      <p>{paragrafo}</p>
+      <p>Ano: {ano}</p>
+    </div>
+  );
+}
+
+Header.defaultProps = {
+  titulo: "Título Padrão",
+  paragrafo: "Texto padrão para o parágrafo.",
+  ano: 2023,
+};
+```
+
+Se algum valor não for passado para `titulo`, `paragrafo` ou `ano`, o componente usará os valores padrão definidos em `defaultProps`.
+
+---
+
+### 6. Boas Práticas ao Usar Propriedades
+
+1. **Primeira Letra Maiúscula em Componentes**: Nomeie componentes com letra maiúscula para que o React os diferencie de elementos HTML.
+
+2. **Envólver Vários Elementos**: Retorne múltiplos elementos envoltos em um contêiner, como uma `div` ou fragmento `<> </>`.
+
+3. **Propriedades Dinâmicas**: Use propriedades dinâmicas para reutilizar o mesmo componente com diferentes valores, mantendo o código mais limpo e modular.
+
+---
+
+### 7. Diferença Entre Named e Default Exports
+
+- **Named Export**: Exporta o componente diretamente pelo nome, precisando de `{}` na importação.
 
   ```jsx
   export function Header() {
     /* código */
   }
-  ```
-
-  Exemplo de importação:
-
-  ```jsx
   import { Header } from "./Components/Header/Header";
   ```
 
-- **Default Export**: Você exporta o componente como padrão, permitindo importá-lo diretamente sem `{}`.
-
-  Exemplo de exportação:
+- **Default Export**: Exporta o componente como padrão, permitindo importá-lo diretamente sem `{}`.
 
   ```jsx
   export default function Header() {
     /* código */
   }
-  ```
-
-  Exemplo de importação:
-
-  ```jsx
   import Header from "./Components/Header/Header";
   ```
 
-### Conclusão:
+---
 
-Propriedades são uma das formas mais poderosas de tornar os componentes React reutilizáveis e dinâmicos. Ao passar dados de um componente pai para um filho, você pode criar componentes genéricos e usá-los com diferentes valores de dados, mantendo o código mais organizado e modular.
+### 8. Conclusão
+
+Propriedades são essenciais para tornar componentes React reutilizáveis e dinâmicos. Elas permitem passar dados de um componente pai para um filho, tornando o código mais organizado. Com desestruturação, valores não string e valores padrão, podemos criar componentes flexíveis, facilitando o desenvolvimento de aplicações escaláveis.
+
+---

@@ -1,7 +1,3 @@
-Agora vou ajustar o resumo para seguir exatamente o padrão que definimos. Aqui está o formato corrigido:
-
----
-
 ## Criando um Projeto React
 
 ### Índice
@@ -77,7 +73,3 @@ O projeto será iniciado e poderá ser acessado em:
 ```
 http://localhost:3000
 ```
-
----
-
-Agora o resumo segue o padrão estabelecido, com cada seção bem estruturada e com um índice claro para facilitar a navegação.

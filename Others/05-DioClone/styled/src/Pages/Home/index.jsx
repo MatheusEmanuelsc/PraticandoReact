@@ -1,4 +1,4 @@
-import { Header } from "../../components/Header";
+import { Header } from "../../components/Header/index.jsx";
 import { Container, TextContent, Title, TitleHighlight } from "./styles.js";
 import banner from "../../assets/banner.svg";
 import { Button } from "../../components/Button/index.jsx";
